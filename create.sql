@@ -1,0 +1,26 @@
+CREATE OR REPLACE Table CLIENTES (
+  ID_CLIENTE integer,
+  NOMBRE_CLIENTE varchar,
+  CORREO_CLIENTE varchar,
+  PAIS_CLIENTE varchar,
+  CONSTRAINT pk_clientes primary key (ID_CLIENTE)
+);
+
+CREATE OR REPLACE Table PRODUCTOS (
+  ID_PRODUCTO integer,
+  NOMBRE_PRODUCTO varchar,
+  CATEGORIA_PRODUCTO varchar,
+  PRECIO_PRODUCTO decimal(10,2),
+  CONSTRAINT pk_productos primary key (ID_PRODUCTO)
+);
+
+CREATE OR REPLACE TABLE PEDIDOS (
+  ID_PEDIDO       integer,
+  FECHA_PEDIDO    date,
+  ID_CLIENTE      integer,
+  ID_PRODUCTO     integer,
+  CANTIDAD_PEDIDO integer,
+  CONSTRAINT pk_pedidos PRIMARY KEY (ID_PEDIDO),
+  CONSTRAINT fk_pedidos_clientes FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTES(ID_CLIENTE),
+  CONSTRAINT fk_pedidos_productos FOREIGN KEY (ID_PRODUCTO) REFERENCES PRODUCTOS(ID_PRODUCTO)
+);
